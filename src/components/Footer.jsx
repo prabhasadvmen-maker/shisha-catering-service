@@ -4,7 +4,7 @@ import { HiSparkles } from 'react-icons/hi2';
 
 export default function Footer({ onOpenBooking }) {
   return (
-    <footer className="bg-zinc-950 border-t border-zinc-900 text-zinc-400 text-xs py-16 relative z-10">
+    <footer className="bg-[#040407] border-t border-amber-500/20 text-zinc-400 text-xs py-16 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

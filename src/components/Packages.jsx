@@ -88,48 +88,48 @@ export default function Packages({ onSelectPackage }) {
               key={pkg.id}
               className={`glass-card rounded-3xl p-8 flex flex-col justify-between relative transition-all duration-300 ${
                 pkg.popular
-                  ? 'border-2 border-amber-500 shadow-[0_0_40px_rgba(245,158,11,0.25)] bg-zinc-900/90 transform hover:-translate-y-2'
-                  : 'border border-zinc-800 hover:border-amber-500/40 hover:-translate-y-1'
+                  ? 'border-2 border-amber-400 shadow-[0_0_50px_rgba(245,158,11,0.35)] bg-gradient-to-b from-[#18122c] to-[#0a0714] transform hover:-translate-y-2'
+                  : 'border border-amber-500/30 hover:border-amber-500/60 bg-[#090714]/80 hover:-translate-y-1'
               }`}
             >
               {pkg.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gold-gradient text-zinc-950 font-extrabold text-[11px] uppercase tracking-widest shadow-lg flex items-center space-x-1.5">
-                  <HiSparkles className="w-3 h-3" />
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 rounded-full bg-gold-gradient text-zinc-950 font-extrabold text-[11px] uppercase tracking-widest shadow-xl flex items-center space-x-1.5 border border-amber-300">
+                  <HiSparkles className="w-3.5 h-3.5" />
                   <span>{pkg.badge}</span>
                 </div>
               )}
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-serif-luxury text-2xl font-bold text-white">
+                  <h3 className="font-serif-luxury text-2xl font-extrabold text-white">
                     {pkg.name}
                   </h3>
-                  <p className="text-xs text-zinc-400 mt-1">
+                  <p className="text-xs text-zinc-300 font-light mt-1">
                     {pkg.tagline}
                   </p>
                 </div>
 
-                <div className="py-4 border-t border-b border-zinc-800 flex items-baseline justify-between">
+                <div className="py-4 border-t border-b border-amber-500/20 flex items-baseline justify-between">
                   <div>
-                    <span className="font-serif-luxury text-3xl font-extrabold text-amber-400">
+                    <span className="font-serif-luxury text-3xl sm:text-4xl font-extrabold text-gold-gradient drop-shadow">
                       {pkg.price}
                     </span>
-                    <span className="text-xs text-zinc-400 block font-medium mt-0.5">
+                    <span className="text-[11px] text-zinc-400 block font-medium mt-0.5">
                       Est. Package Starting Price
                     </span>
                   </div>
-                  <span className="px-3 py-1 rounded-lg bg-zinc-900 text-zinc-300 text-xs font-semibold border border-zinc-800">
+                  <span className="px-3.5 py-1.5 rounded-xl bg-[#141024] text-amber-300 text-xs font-semibold border border-amber-500/30">
                     {pkg.period}
                   </span>
                 </div>
 
                 {/* Features List */}
                 <div className="space-y-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-amber-400">Package Inclusions:</p>
+                  <p className="text-xs font-extrabold uppercase tracking-widest text-amber-400">Package Inclusions:</p>
                   <ul className="space-y-2.5">
                     {pkg.features.map((feat) => (
-                      <li key={feat} className="flex items-start space-x-3 text-xs text-zinc-300">
-                        <div className="w-4 h-4 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5 border border-amber-500/40">
+                      <li key={feat} className="flex items-start space-x-3 text-xs text-zinc-200">
+                        <div className="w-4 h-4 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5 border border-amber-500/50 shadow-sm">
                           <FaCheck className="w-2.5 h-2.5" />
                         </div>
                         <span>{feat}</span>
@@ -142,10 +142,10 @@ export default function Packages({ onSelectPackage }) {
               <div className="pt-8">
                 <button
                   onClick={() => onSelectPackage(pkg)}
-                  className={`w-full py-3.5 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center space-x-2 ${
+                  className={`w-full py-4 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center space-x-2 ${
                     pkg.popular
-                      ? 'bg-gold-gradient hover:brightness-110 text-zinc-950 shadow-[0_0_20px_rgba(245,158,11,0.4)]'
-                      : 'bg-zinc-900 hover:bg-amber-500 text-amber-400 hover:text-zinc-950 border border-amber-500/30'
+                      ? 'bg-gold-gradient hover:brightness-110 text-zinc-950 shadow-[0_0_30px_rgba(245,158,11,0.5)]'
+                      : 'bg-amber-500/15 hover:bg-amber-500 text-amber-400 hover:text-zinc-950 border border-amber-500/40'
                   }`}
                 >
                   <span>Select {pkg.name}</span>

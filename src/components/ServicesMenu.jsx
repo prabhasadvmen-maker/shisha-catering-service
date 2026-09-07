@@ -53,7 +53,7 @@ export default function ServicesMenu() {
   ];
 
   return (
-    <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 bg-zinc-950/60 relative z-10 border-t border-b border-zinc-900">
+    <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#06040a]/80 relative z-10 border-t border-b border-amber-500/20">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Section Header */}

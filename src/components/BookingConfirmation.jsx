@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { FaCircleCheck, FaCopy, FaWhatsapp, FaArrowRight } from 'react-icons/fa6';
+import { FaCircleCheck, FaCopy, FaWhatsapp, FaArrowRight, FaShieldHalved } from 'react-icons/fa6';
 
 export default function BookingConfirmation({ booking, onBackHome }) {
   const [copied, setCopied] = React.useState(false);
@@ -28,12 +28,12 @@ export default function BookingConfirmation({ booking, onBackHome }) {
 
   const whatsappMessage = encodeURIComponent(
     `Hello SHISHA VIP Catering team! I just placed a booking request for my ${booking.eventType}.\n\n` +
-    `📌 *Booking ID:* ${booking.id}\n` +
-    `👤 *Name:* ${booking.customerName}\n` +
-    `📅 *Event Date:* ${booking.eventDate} at ${booking.eventTime}\n` +
-    `📍 *Location:* ${booking.location}\n` +
-    `💨 *Hookah Quantity:* ${booking.hookahCount} Pcs (${booking.guestCount} Guests)\n` +
-    `🌿 *Flavors:* ${booking.flavors.join(', ')}\n\n` +
+    `Booking ID: ${booking.id}\n` +
+    `Name: ${booking.customerName}\n` +
+    `Event Date: ${booking.eventDate} at ${booking.eventTime}\n` +
+    `Location: ${booking.location}\n` +
+    `Hookah Quantity: ${booking.hookahCount} Pcs (${booking.guestCount} Guests)\n` +
+    `Selected Flavors: ${booking.flavors.join(', ')}\n\n` +
     `Please send me the custom quote & confirm availability.`
   );
 

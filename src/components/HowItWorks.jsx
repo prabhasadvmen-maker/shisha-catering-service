@@ -31,7 +31,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 bg-zinc-950/80 relative z-10 border-t border-zinc-900">
+    <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#06040a]/90 relative z-10 border-t border-amber-500/20">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Section Header */}

@@ -45,12 +45,12 @@ export default function SmokeCanvas() {
         this.life = 0;
         this.maxLife = Math.random() * 600 + 400;
 
-        // Color variants: Amber Gold (#f59e0b), Velvet Purple (#a855f7), Cyan Chill (#06b6d4)
+        // Color variants: Imperial Amber Gold (#f59e0b), Royal Velvet Purple (#a855f7), Deep Gold (#d97706), Deep Violet (#7e22ce)
         const colors = [
-          { r: 245, g: 158, b: 11 }, // Amber Gold
-          { r: 168, g: 85, b: 247 }, // Purple Smoke
-          { r: 6, g: 182, b: 212 },   // Ice Cyan
-          { r: 236, g: 72, b: 153 }   // Neon Magenta
+          { r: 245, g: 158, b: 11 }, // Imperial Amber Gold
+          { r: 168, g: 85, b: 247 }, // Royal Velvet Purple
+          { r: 217, g: 119, b: 6 },  // Deep Gold
+          { r: 126, g: 34, b: 206 }  // Deep Royal Violet
         ];
         this.color = colors[Math.floor(Math.random() * colors.length)];
       }
@@ -91,7 +91,56 @@ export default function SmokeCanvas() {
       }
     }
 
-    // Ember Spark Particle Class (Glowing Charcoals effect)
+    // Smoke Ring Particle Class (Realistic Hookah Smoke Rings)
+    class SmokeRing {
+      constructor() {
+        this.reset(true);
+      }
+
+      reset(initial = false) {
+        this.x = Math.random() * width;
+        this.y = initial ? Math.random() * height : height + Math.random() * 80;
+        this.radius = Math.random() * 15 + 10;
+        this.thickness = Math.random() * 8 + 4;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = -(Math.random() * 0.8 + 0.4);
+        this.opacity = Math.random() * 0.25 + 0.1;
+        this.maxOpacity = this.opacity;
+        this.life = 0;
+        this.maxLife = Math.random() * 500 + 350;
+      }
+
+      update() {
+        this.life++;
+        this.x += this.vx + (mouse.x - width / 2) * 0.0001;
+        this.y += this.vy;
+        this.radius += 0.25; // Smoke ring expands as it rises
+
+        if (this.life < 80) {
+          this.opacity = (this.life / 80) * this.maxOpacity;
+        } else if (this.life > this.maxLife - 80) {
+          this.opacity = ((this.maxLife - this.life) / 80) * this.maxOpacity;
+        }
+
+        if (this.life >= this.maxLife || this.y < -this.radius * 2) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.lineWidth = this.thickness;
+        ctx.strokeStyle = `rgba(245, 158, 11, ${this.opacity * 0.6})`;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = 'rgba(168, 85, 247, 0.4)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    // Ember Spark Particle Class (Glowing Coconut Charcoal Coals)
     class Ember {
       constructor() {
         this.reset(true);
@@ -100,17 +149,21 @@ export default function SmokeCanvas() {
       reset(initial = false) {
         this.x = Math.random() * width;
         this.y = initial ? Math.random() * height : height + 10;
-        this.size = Math.random() * 2.5 + 1;
-        this.vx = (Math.random() - 0.5) * 0.8;
-        this.vy = -(Math.random() * 1.2 + 0.5);
-        this.alpha = Math.random() * 0.8 + 0.2;
-        this.pulse = Math.random() * 0.05;
+        this.size = Math.random() * 3 + 1.2;
+        this.vx = (Math.random() - 0.5) * 1.1;
+        this.vy = -(Math.random() * 1.6 + 0.6);
+        this.alpha = Math.random() * 0.85 + 0.25;
+        this.pulse = Math.random() * 0.08;
+
+        // Fiery Ember Colors: Hot Red, Bright Orange, Amber Gold
+        const emberColors = ['#f59e0b', '#f97316', '#ef4444', '#fbbf24'];
+        this.color = emberColors[Math.floor(Math.random() * emberColors.length)];
       }
 
       update() {
         this.x += this.vx;
         this.y += this.vy;
-        this.alpha += Math.sin(Date.now() * 0.005) * this.pulse;
+        this.alpha += Math.sin(Date.now() * 0.006) * this.pulse;
 
         if (this.y < -10 || this.x < -10 || this.x > width + 10) {
           this.reset();
@@ -119,9 +172,10 @@ export default function SmokeCanvas() {
 
       draw() {
         ctx.save();
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = '#f59e0b';
-        ctx.fillStyle = `rgba(245, 158, 11, ${Math.max(0.1, Math.min(1, this.alpha))})`;
+        ctx.shadowBlur = 16;
+        ctx.shadowColor = this.color;
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = Math.max(0.1, Math.min(1, this.alpha));
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -130,15 +184,16 @@ export default function SmokeCanvas() {
     }
 
     // Initialize particles
-    const particleCount = Math.min(Math.floor(width / 35), 45);
-    const emberCount = Math.min(Math.floor(width / 25), 60);
+    const particleCount = Math.min(Math.floor(width / 30), 55);
+    const ringCount = Math.min(Math.floor(width / 70), 16);
+    const emberCount = Math.min(Math.floor(width / 20), 80);
 
     const particles = Array.from({ length: particleCount }, () => new Particle());
+    const rings = Array.from({ length: ringCount }, () => new SmokeRing());
     const embers = Array.from({ length: emberCount }, () => new Ember());
 
     // Render loop
     const render = () => {
-      // Smooth mouse interpolation
       mouse.x += (mouse.targetX - mouse.x) * 0.05;
       mouse.y += (mouse.targetY - mouse.y) * 0.05;
 
@@ -150,7 +205,13 @@ export default function SmokeCanvas() {
         p.draw();
       });
 
-      // Draw ember glowing particles
+      // Draw expanding smoke rings
+      rings.forEach((r) => {
+        r.update();
+        r.draw();
+      });
+
+      // Draw glowing ember sparks
       embers.forEach((e) => {
         e.update();
         e.draw();
@@ -171,7 +232,7 @@ export default function SmokeCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-80"
+      className="fixed inset-0 pointer-events-none z-0 opacity-90"
     />
   );
 }

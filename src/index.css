@@ -3,6 +3,8 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #040407;
+    color: #f4f4f5;
   }
 
   h1, h2, h3, .font-serif-luxury {
@@ -10,53 +12,83 @@
   }
 }
 
-/* Custom Utilities for Luxury Theme */
+/* --- ROYAL DARK CUSTOM DESIGN UTILITIES --- */
+
+/* Royal Gold Metallic Gradient Text */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+  background: linear-gradient(135deg, #fff7ed 0%, #fef08a 20%, #f59e0b 55%, #d97706 85%, #92400e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* Royal Imperial Violet & Gold Accent Text */
+.text-royal-gradient {
+  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 40%, #c084fc 80%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Solid Gold Foil Button Gradient */
 .bg-gold-gradient {
-  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+  background: linear-gradient(135deg, #fef08a 0%, #fbbf24 35%, #d97706 80%, #b45309 100%);
 }
 
-.border-gold-glow {
-  border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
-}
-
+/* Royal Velvet Ambient Card Background */
 .glass-card {
-  background: rgba(18, 18, 22, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 8, 17, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 158, 11, 0.18);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(168, 85, 247, 0.05);
 }
 
 .glass-card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card-hover:hover {
-  background: rgba(26, 26, 32, 0.85);
-  border-color: rgba(245, 158, 11, 0.3);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.15);
+  background: rgba(16, 13, 27, 0.9);
+  border-color: rgba(245, 158, 11, 0.45);
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95), 0 0 30px rgba(245, 158, 11, 0.22);
+}
+
+.border-gold-glow {
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.2);
+}
+
+/* Royal Dark Background Vignette & Ambient Glows */
+.bg-royal-dark {
+  background-color: #040407;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(88, 28, 135, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(13, 10, 22, 0.8) 0%, #040407 100%);
+}
+
+/* Custom Glow Effects */
+.glow-gold {
+  box-shadow: 0 0 35px rgba(245, 158, 11, 0.4);
+}
+
+.glow-purple {
+  box-shadow: 0 0 35px rgba(168, 85, 247, 0.35);
 }
 
 /* Smoke Cloud Animations */
 @keyframes smokeFloat {
   0% {
     transform: translateY(0) scale(1) rotate(0deg);
-    opacity: 0.2;
+    opacity: 0.25;
   }
   50% {
-    transform: translateY(-20px) scale(1.1) rotate(3deg);
-    opacity: 0.4;
+    transform: translateY(-25px) scale(1.12) rotate(4deg);
+    opacity: 0.45;
   }
   100% {
     transform: translateY(0) scale(1) rotate(0deg);
-    opacity: 0.2;
+    opacity: 0.25;
   }
 }
 
@@ -64,13 +96,19 @@
   animation: smokeFloat 8s ease-in-out infinite;
 }
 
-/* Custom Glow Effects */
-.glow-gold {
-  box-shadow: 0 0 35px rgba(245, 158, 11, 0.35);
+@keyframes goldPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
 }
 
-.glow-purple {
-  box-shadow: 0 0 35px rgba(168, 85, 247, 0.3);
+.animate-gold-pulse {
+  animation: goldPulse 3s ease-in-out infinite;
 }
 
 /* Custom Scrollbar */
@@ -78,10 +116,10 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #040407;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #1f1b2e;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {

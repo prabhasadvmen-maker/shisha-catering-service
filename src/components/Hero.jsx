@@ -42,9 +42,9 @@ export default function Hero({ onOpenBooking }) {
           src="/assets/hero_video.mp4"
         />
         
-        {/* Dark Luxury Vignette & Gradient Overlays for Crystal Text Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/85 to-zinc-950/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-zinc-950/80" />
+        {/* Dark Royal Luxury Vignette & Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#040407] via-[#080612]/90 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#040407] via-transparent to-[#040407]/90" />
       </div>
 
       {/* Floating Sound & Video Controls */}

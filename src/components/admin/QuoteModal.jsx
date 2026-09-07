@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Send, DollarSign, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { FaXmark, FaPaperPlane, FaWhatsapp, FaCircleCheck } from 'react-icons/fa6';
 import { saveQuote } from '../../services/bookingStore';
 
 export default function QuoteModal({ booking, onClose, onQuoteSent }) {
@@ -18,14 +18,14 @@ export default function QuoteModal({ booking, onClose, onQuoteSent }) {
   };
 
   const whatsappQuoteMsg = encodeURIComponent(
-    `Hello ${booking.customerName}! 💨\n` +
+    `Hello ${booking.customerName}!\n` +
     `Here is your official custom quote for *${booking.eventType}* Shisha Catering:\n\n` +
-    `📌 *Booking ID:* ${booking.id}\n` +
-    `📅 *Event Date:* ${booking.eventDate} (${booking.eventTime})\n` +
-    `💨 *Hookah Quantity:* ${booking.hookahCount} Pcs\n` +
-    `💵 *Estimated Quote Amount:* ₹${parseFloat(quoteAmount).toLocaleString('en-IN')}\n\n` +
-    `*Inclusions:* ${notes}\n\n` +
-    `Reply *CONFIRM* to lock your event date!`
+    `Booking ID: ${booking.id}\n` +
+    `Event Date: ${booking.eventDate} (${booking.eventTime})\n` +
+    `Hookah Quantity: ${booking.hookahCount} Pcs\n` +
+    `Estimated Quote Amount: ₹${parseFloat(quoteAmount).toLocaleString('en-IN')}\n\n` +
+    `Inclusions: ${notes}\n\n` +
+    `Reply CONFIRM to lock your event date!`
   );
 
   const whatsappUrl = `https://wa.me/${booking.phone.replace(/[^0-9]/g, '')}?text=${whatsappQuoteMsg}`;
@@ -48,7 +48,7 @@ export default function QuoteModal({ booking, onClose, onQuoteSent }) {
             onClick={onClose}
             className="w-8 h-8 rounded-full bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 flex items-center justify-center"
           >
-            <X className="w-4 h-4" />
+            <FaXmark className="w-4 h-4" />
           </button>
         </div>
 
@@ -87,7 +87,7 @@ export default function QuoteModal({ booking, onClose, onQuoteSent }) {
               type="submit"
               className="w-full sm:flex-1 py-3 rounded-xl bg-gold-gradient hover:brightness-110 text-zinc-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2"
             >
-              <Send className="w-4 h-4" />
+              <FaPaperPlane className="w-3.5 h-3.5" />
               <span>Save & Update Quote</span>
             </button>
 
@@ -97,7 +97,7 @@ export default function QuoteModal({ booking, onClose, onQuoteSent }) {
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2"
             >
-              <MessageSquare className="w-4 h-4" />
+              <FaWhatsapp className="w-4 h-4" />
               <span>Send via WhatsApp</span>
             </a>
           </div>
